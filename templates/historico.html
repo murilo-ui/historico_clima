@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPulse | Histórico</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body class="sunny"> <div class="bg-circles">
+        <div class="circle" style="width: 400px; height: 400px; top: -100px; right: -100px;"></div>
+    </div>
+
+    <main class="container">
+        <a href="/" class="btn-voltar">
+            <i data-lucide="arrow-left"></i> Voltar para a Busca
+        </a>
+
+        <section class="history-card">
+            <h2 style="display: flex; align-items: center; gap: 10px;">
+                <i data-lucide="database"></i> Registros Atmosféricos
+            </h2>
+            
+            {% if historico %}
+            <div class="table-responsive">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Cidade</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Temp.</th>
+                            <th>Umidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in historico %}
+                        <tr>
+                            <td class="tag-cidade">{{ item.cidade }}</td>
+                            <td>{{ item.data_consulta }}</td>
+                            <td>{{ item.hora_pesquisa }}</td>
+                            <td class="tag-temp">{{ item.temperatura }}°C</td>
+                            <td>{{ item.umidade }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div style="text-align: center; padding: 40px;">
+                <i data-lucide="inbox" style="width: 48px; height: 48px; opacity: 0.5;"></i>
+                <p>Nenhum registro encontrado no banco de dados.</p>
+            </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
